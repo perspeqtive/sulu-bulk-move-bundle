@@ -1,0 +1,36 @@
+{
+  "name": "perspeqtive/sulu-bulk-move-bundle",
+  "description": "Moves all children of one structure element to another",
+  "license": "proprietary",
+  "type": "sulu-bundle",
+  "authors": [
+    {
+      "name": "Markus Holstein",
+      "email": "mh@perspeqtive.de"
+    }
+  ],
+  "keywords": [
+    "sulu",
+    "navigation",
+    "bulk",
+    "move"
+  ],
+  "require": {
+    "php": "^8.2",
+    "sulu/sulu": "^2.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^12",
+    "jackalope/jackalope-doctrine-dbal": "^1.3.4 || ^2.0",
+    "php-cs-fixer/shim": "^3.75",
+    "phpstan/phpstan": "^2.1",
+    "phpstan/phpstan-phpunit": "^2.0",
+    "phpstan/phpstan-symfony": "^2.0"
+  },
+  "autoload": {
+    "PERSPEQTIVE\\SuluBulkMoveBundle\\": "src/"
+  },
+  "autoload-dev": {
+    "PERSPEQTIVE\\SuluBulkMoveBundle\\Tests": "tests/"
+  }
+}

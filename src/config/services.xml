@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+               https://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service class="PERSPEQTIVE\SuluBulkMoveBundle\Mover\BulkMover" id="perspeqtive_sulu_bulk_move.mover.bulk_mover">
+            <argument key="$documentManager" type="service" id="sulu_document_manager.document_manager"/>
+        </service>
+        <service id="PERSPEQTIVE\SuluBulkMoveBundle\Command\BulkMoveNavigationCommand" public="true">
+            <argument type="service" key="$dispatcher" id="event_dispatcher" />
+            <argument type="service" key="$mover" id="perspeqtive_sulu_bulk_move.mover.bulk_mover"/>
+            <tag name="console.command" />
+        </service>
+    </services>
+</container>
