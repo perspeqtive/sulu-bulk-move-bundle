@@ -28,9 +28,13 @@
     "phpstan/phpstan-symfony": "^2.0"
   },
   "autoload": {
-    "PERSPEQTIVE\\SuluBulkMoveBundle\\": "src/"
+    "psr-4": {
+      "PERSPEQTIVE\\SuluBulkMoveBundle\\": "src/"
+    }
   },
   "autoload-dev": {
-    "PERSPEQTIVE\\SuluBulkMoveBundle\\Tests": "tests/"
+    "psr-4": {
+      "PERSPEQTIVE\\SuluBulkMoveBundle\\Tests": "tests/"
+    }
   }
 }
