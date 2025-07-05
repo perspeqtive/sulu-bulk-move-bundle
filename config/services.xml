@@ -7,7 +7,7 @@
         <service class="PERSPEQTIVE\SuluBulkMoveBundle\Mover\BulkMover" id="perspeqtive_sulu_bulk_move.mover.bulk_mover">
             <argument key="$documentManager" type="service" id="sulu_document_manager.document_manager"/>
         </service>
-        <service id="PERSPEQTIVE\SuluBulkMoveBundle\Command\BulkMoveNavigationCommand" public="true">
+        <service id="PERSPEQTIVE\SuluBulkMoveBundle\Command\BulkMovePageCommand" public="true">
             <argument type="service" key="$dispatcher" id="event_dispatcher" />
             <argument type="service" key="$mover" id="perspeqtive_sulu_bulk_move.mover.bulk_mover"/>
             <tag name="console.command" />

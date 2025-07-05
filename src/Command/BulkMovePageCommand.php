@@ -4,27 +4,27 @@ declare(strict_types=1);
 
 namespace PERSPEQTIVE\SuluBulkMoveBundle\Command;
 
-use PERSPEQTIVE\SuluBulkMoveBundle\Mover\BulkMover;
-use Psr\EventDispatcher\EventDispatcherInterface;
+use PERSPEQTIVE\SuluBulkMoveBundle\Mover\BulkMoverInterface;
 use Sulu\Bundle\PageBundle\Domain\Event\PageMovedEvent;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class BulkMoveNavigationCommand extends Command
+use function sprintf;
+
+#[AsCommand(name: 'perspeqtive:sulu:bulk-move')]
+class BulkMovePageCommand extends Command
 {
-
     public function __construct(
-        private BulkMover $mover,
-        private EventDispatcherInterface $dispatcher
+        private readonly BulkMoverInterface $mover,
+        private readonly EventDispatcherInterface $dispatcher,
     ) {
-
+        parent::__construct();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure(): void
     {
         $this
@@ -52,19 +52,26 @@ class BulkMoveNavigationCommand extends Command
 
     private function moveChildren(InputInterface $input): void
     {
+        /** @var string $sourceUuid */
         $sourceUuid = $input->getArgument('source');
+        /** @var string $targetUuid */
         $targetUuid = $input->getArgument('target');
+        /** @var string $locale */
         $locale = $input->getArgument('locale');
         $this->mover->move($sourceUuid, $targetUuid, $locale);
     }
 
     private function onPageMoved(PageMovedEvent $event, OutputInterface $output): void
     {
+        /** @var string $parentTitle */
+        $parentTitle = $event->getEventContext()['previousParentTitle'] ?? 'unknown';
+        /** @var string $newParentTitle */
+        $newParentTitle = $event->getEventContext()['newParentTitle'] ?? 'unknown';
         $output->writeln(sprintf(
-            'Sulu PageMovedEvent: Moved "%s" from "%s" to new parent "%s"',
+            'Moved page from "%s" to new parent "%s": %s',
+            $parentTitle,
+            $newParentTitle,
             $event->getPageDocument()->getTitle(),
-            $event->getPageDocument()->getParent()->getTitle(),
-            $event->getEventContext()['newParentTitle'] ?? ''
         ));
     }
 }

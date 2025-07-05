@@ -34,7 +34,12 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "PERSPEQTIVE\\SuluBulkMoveBundle\\Tests": "tests/"
+      "PERSPEQTIVE\\SuluBulkMoveBundle\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
     }
   }
 }
