@@ -1,7 +1,7 @@
 # SuluBulkMoveBundle
 ![Packagist Version](https://img.shields.io/packagist/v/perspeqtive/sulu-bulk-move-bundle)
 
-This bundle moves all child pages from one Sulu navigation node to another.
+The **Sulu Bulk Move Bundle** moves all child pages from one Sulu navigation node to another.
 Perfect for reorganizing whole parts of your page tree in one command.
 
 ---
